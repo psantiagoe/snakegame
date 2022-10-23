@@ -1,17 +1,17 @@
 import * as ImagePicker from "expo-image-picker";
 
 import { Alert, Button, Image, Linking, Text, View } from "react-native";
-import React, { useCallback } from "react";
 
+import React from "react";
 import colors from "../../utils/colors";
-import { savePhoto } from "../../store/profile.slice";
 import { styles } from "./styles";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 
-const ImageSelector = ({ navigation }) => {
-	const dispatch = useDispatch();
-	const [pickedUrl, setPickedUrl] = useState();
+const ImageSelector = ({ onPhotoPicked }) => {
+	const [pickedUrl, setPickedUrl] = useState(
+		useSelector((state) => state.profile.photo)
+	);
 
 	const verifyPermissions = async () => {
 		const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -53,18 +53,14 @@ const ImageSelector = ({ navigation }) => {
 		});
 
 		setPickedUrl(image.uri);
-	};
-
-	const onHandleSavePhoto = () => {
-		dispatch(savePhoto(pickedUrl));
-		navigation.goBack();
+		onPhotoPicked(image.uri);
 	};
 
 	return (
 		<View style={styles.container}>
 			<View style={styles.preview}>
 				{!pickedUrl ? (
-					<Text>No imagen picked yet.</Text>
+					<Text style={styles.text}>No imagen picked yet.</Text>
 				) : (
 					<Image style={styles.image} source={{ uri: pickedUrl }} />
 				)}
@@ -73,11 +69,6 @@ const ImageSelector = ({ navigation }) => {
 				title="Take Photo"
 				color={colors.secundary}
 				onPress={onHandleTakePhoto}
-			/>
-			<Button
-				title="Save Photo"
-				color={colors.primary}
-				onPress={onHandleSavePhoto}
 			/>
 		</View>
 	);

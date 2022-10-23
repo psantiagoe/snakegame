@@ -1,14 +1,12 @@
 import { StyleSheet } from "react-native";
+import colors from "../../utils/colors";
 
 export const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		// alignItems: "center",
-		// justifyContent: "center",
 		margin: 20,
 	},
 	profileContainer: {
-		// flex: 1,
 		flexDirection: "row",
 		alignItems: "center",
 		flexWrap: "wrap",
@@ -17,10 +15,20 @@ export const styles = StyleSheet.create({
 	userName: {
 		marginLeft: 15,
 		fontSize: 22,
+		fontFamily: "Lato-Regular",
 	},
 	image: {
 		width: 100,
 		height: 100,
 		borderRadius: 100,
+	},
+	dashboard: {
+		marginVertical: 20,
+	},
+	titleDashboard: {
+		fontSize: 18,
+		fontFamily: "Lato-Bold",
+		padding: 5,
+		textAlign: "center",
 	},
 });

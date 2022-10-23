@@ -1,6 +1,5 @@
-import { GameScreen, HomeScreen, ProfileScreen } from "../screens";
+import { EditProfileScreen, GameScreen, HomeScreen, ProfileScreen } from "../screens";
 
-import { ImageSelector } from "../components";
 import React from "react";
 import colors from "../utils/colors";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -18,8 +17,9 @@ const GameNavigator = () => {
 				},
 				headerTintColor: colors.text,
 				headerTitleStyle: {
-					fontWeight: "bold",
+					fontFamily: "Lato-Bold",
 				},
+				headerTitleAlign: "center",
 			}}
 		>
 			<Stack.Screen
@@ -38,9 +38,9 @@ const GameNavigator = () => {
 				options={{ title: "Profile" }}
 			/>
 			<Stack.Screen
-				name="PickPhoto"
-				component={ImageSelector}
-				options={{ title: "Pick a new Photo" }}
+				name="EditProfile"
+				component={EditProfileScreen}
+				options={{ title: "Profile Edition" }}
 			/>
 		</Stack.Navigator>
 	);

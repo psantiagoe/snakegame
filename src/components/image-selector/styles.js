@@ -4,7 +4,7 @@ import colors from "../../utils/colors";
 export const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		margin: 20,
+		marginTop: 20,
 	},
 	preview: {
 		width: "100%",
@@ -18,5 +18,9 @@ export const styles = StyleSheet.create({
 	image: {
 		width: "100%",
 		height: "100%",
+	},
+	text: {
+		fontSize: 16,
+		fontFamily: "Lato-Regular",
 	},
 });
