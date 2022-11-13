@@ -1,6 +1,7 @@
 import { Alert, Button, TouchableOpacity, View } from "react-native";
 import { Food, Head, Points, Tail, Timer } from "../../components";
 import React, { useEffect, useState } from "react";
+import { updateScore, updateTime } from "../../store/game.slice";
 import { useDispatch, useSelector } from "react-redux";
 
 import { FontAwesome } from "@expo/vector-icons";
@@ -63,6 +64,8 @@ const GameScreen = () => {
 		const today = new Date(Date.now());
 
 		dispatch(saveScore(today.toLocaleDateString("es-ES"), points, timeRdx));
+		dispatch(updateScore(0));
+		dispatch(updateTime(0));
 
 		setRunning(true);
 		setPoints(0);

@@ -12,13 +12,17 @@ const scoreBoardSlice = createSlice({
 	initialState,
 	reducers: {
 		addScore: (state, action) => {
-			const newScore = new Score(
-				action.payload.id.toString(),
-				action.payload.date,
-				action.payload.points,
-				action.payload.time
-			);
-			state.scores.push(newScore);
+			try {
+				const newScore = new Score(
+					action.payload.id.toString(),
+					action.payload.date,
+					action.payload.points,
+					action.payload.time
+				);
+				state.scores.push(newScore);
+			} catch (error) {
+				throw error;
+			}
 		},
 		setScoreBoard: (state, action) => {
 			state.scores = action.payload;
@@ -32,7 +36,7 @@ export const saveScore = (date, points, time) => {
 	return async (dispatch) => {
 		try {
 			const result = await insertScore(date, points, time);
-			dispatch(addScore({ date, points, time }));
+			dispatch(addScore({ id: result.insertId, date, points, time }));
 		} catch (error) {
 			throw error;
 		}
