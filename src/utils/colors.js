@@ -6,5 +6,6 @@ export default {
 	text: "#1E2F23",
 	white: "#FFFFFF",
 	black: "#000000",
-	gray: "#808080",
+	grey: "#808080",
+	orange: "#D36135",
 };

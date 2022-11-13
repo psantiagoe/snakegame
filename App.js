@@ -36,12 +36,9 @@ export default function App() {
 	}
 
 	init()
-		.then(() => {
-			console.log("Database initalized");
-		})
+		.then(() => {})
 		.catch((error) => {
-			console.log("Falied to initialize Database");
-			console.log(error.message);
+			throw error;
 		});
 
 	return (

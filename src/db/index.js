@@ -11,6 +11,12 @@ export const init = () => {
 				() => resolve(),
 				(_, err) => reject(err)
 			);
+			tx.executeSql(
+				"CREATE TABLE IF NOT EXISTS scoreboard (id INTEGER PRIMARY KEY NOT NULL, date TEXT NOT NULL, points INTEGER NOT NULL, time TEXT NOT NULL);",
+				[],
+				() => resolve(),
+				(_, err) => reject(err)
+			);
 		});
 	});
 
@@ -51,6 +57,36 @@ export const getProfile = () => {
 		db.transaction((tx) => {
 			tx.executeSql(
 				"SELECT * FROM profile",
+				[],
+				(_, result) => resolve(result),
+				(_, err) => reject(err)
+			);
+		});
+	});
+
+	return promise;
+};
+
+export const insertScore = (date, points, time) => {
+	const promise = new Promise((resolve, reject) => {
+		db.transaction((tx) => {
+			tx.executeSql(
+				"INSERT INTO scoreboard (date, points, time) values (?, ?, ?);",
+				[date, points, time],
+				(_, result) => resolve(result),
+				(_, err) => reject(err)
+			);
+		});
+	});
+
+	return promise;
+};
+
+export const getScoreBoard = (maxRows = 10) => {
+	const promise = new Promise((resolve, reject) => {
+		db.transaction((tx) => {
+			tx.executeSql(
+				`SELECT * FROM scoreboard ORDER BY id DESC LIMIT ${maxRows};`,
 				[],
 				(_, result) => resolve(result),
 				(_, err) => reject(err)

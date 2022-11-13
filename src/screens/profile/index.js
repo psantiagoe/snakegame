@@ -5,44 +5,24 @@ import { useDispatch, useSelector } from "react-redux";
 import Table from "../../components/table";
 import colors from "../../utils/colors";
 import { loadProfile } from "../../store/profile.slice";
+import { loadScoreBoard } from "../../store/scoreboard.slice";
 import { styles } from "./styles";
 
 const ProfileScreen = ({ navigation }) => {
 	const dispatch = useDispatch();
 	const photo = useSelector((state) => state.profile.photo);
 	const userName = useSelector((state) => state.profile.userName);
+	const scoreBoard = useSelector((state) => state.scoreBoard.scores);
 
 	useEffect(() => {
 		dispatch(loadProfile());
+		dispatch(loadScoreBoard());
 	}, [dispatch]);
 
 	const headers = [
 		{ id: 1, value: "Date" },
 		{ id: 2, value: "Points" },
 		{ id: 3, value: "Time" },
-	];
-
-	const items = [
-		{
-			id: 1,
-			values: ["12/10/2022", 98, "15:00"],
-		},
-		{
-			id: 2,
-			values: ["15/10/2022", 18, "01:23"],
-		},
-		{
-			id: 3,
-			values: ["17/10/2022", 52, "05:12"],
-		},
-		{
-			id: 4,
-			values: ["20/10/2022", 12, "01:42"],
-		},
-		{
-			id: 5,
-			values: ["22/10/2022", 25, "03:58"],
-		},
 	];
 
 	return (
@@ -61,7 +41,7 @@ const ProfileScreen = ({ navigation }) => {
 			/>
 			<View style={styles.dashboard}>
 				<Text style={styles.titleDashboard}>Your Last Plays</Text>
-				<Table headers={headers} data={items} />
+				<Table headers={headers} data={scoreBoard} />
 			</View>
 		</View>
 	);

@@ -40,6 +40,9 @@ export const loadProfile = () => {
 	return async (dispatch) => {
 		try {
 			const result = await getProfile();
+
+			if (result?.rows._array.length === 0) return;
+
 			dispatch(setProfile(result?.rows._array));
 		} catch (error) {
 			throw error;

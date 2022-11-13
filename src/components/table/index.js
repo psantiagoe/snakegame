@@ -7,13 +7,9 @@ const Table = ({ headers, data }) => {
 	const renderItem = ({ item }) => {
 		return (
 			<View style={styles.row}>
-				{item.values.map((value, index) => {
-					return (
-						<Text key={index} style={styles.text}>
-							{value}
-						</Text>
-					);
-				})}
+				<Text style={styles.text}>{item.date}</Text>
+				<Text style={styles.text}>{item.points}</Text>
+				<Text style={styles.text}>{item.time}</Text>
 			</View>
 		);
 	};

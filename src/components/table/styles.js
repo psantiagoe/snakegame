@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
 		fontFamily: "Lato-Bold",
 	},
 	rowsContainer: {
-		marginTop: 5,
+		marginVertical: 5,
 	},
 	row: {
 		flexDirection: "row",
@@ -33,5 +33,14 @@ export const styles = StyleSheet.create({
 	text: {
 		fontSize: 14,
 		fontFamily: "Lato-Regular",
+	},
+	emptyContainer: {
+		justifyContent: "center",
+		alignItems: "center",
+		marginVertical: 20,
+	},
+	empty: {
+		fontFamily: "Lato-Bold",
+		fontSize: 18,
 	},
 });
